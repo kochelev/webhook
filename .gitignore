@@ -1,0 +1,8 @@
+/.vscode
+/.idea
+/__pycache__
+/venv
+*.code-workspace
+app.wsgi
+config_app.py
+config_wh.py
