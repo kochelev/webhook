@@ -51,7 +51,8 @@ def init(reporter, app, payload=None):
     try:
         sh.execute([{'cmd': 'sudo mkdir ' + app.path + '/' + app.name},
                     {'cmd': 'sudo chmod -R 777 ' + app.path + '/' + app.name},
-                    {'cmd': 'sudo -u ' + app.username + ' git clone ' + app.github + ' ' + app.path + '/' + app.name}])
+                    {'cmd': 'sudo -u ' + app.username + ' git clone --branch ' + app.github_branchname +
+                            ' --single-branch ' + app.github + ' ' + app.path + '/' + app.name}])
 
         if payload is not None:
             reporter('Prepare to save .env file to the %s/%s folder' % (app.path, app.name))
@@ -296,7 +297,8 @@ def deploy(reporter, app):
 
     sh = Shell(reporter)
     sh.execute([{'cmd': 'sudo docker-compose -f ' + app.path + '/' + app.name + '/docker-compose.yml down'},
-                {'cmd': 'sudo -u ' + app.username + ' git -C ' + app.path + '/' + app.name + ' pull'}])
+                {'cmd': 'sudo -u ' + app.username + ' git -C ' + app.path + '/' + app.name +
+                        ' pull origin ' + app.github_branchname}])
     res = launch_process(reporter,
                          {'cmd': 'sudo docker-compose -f ' + app.path + '/' + app.name + '/docker-compose.yml up',
                           'contain': app.success_phrase})

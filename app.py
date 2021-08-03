@@ -35,7 +35,7 @@ import config_wh
 
 app = Flask(__name__)
 
-app.version = '1.1.009'
+app.version = '1.1.010'
 app.env = '.env'
 
 # WEBHOOK CONSTANTS:
@@ -67,6 +67,7 @@ def init_config(has_config=False):
             app.config_app = importlib.import_module('config_app')
 
         app.github = app.config_app.app_ssh_github_link
+        app.github_branchname = app.config_app.app_github_branchname
         app.secret_key = app.config_app.github_secret_key
         app.port = app.config_app.app_docker_port
         app.success_phrase = app.config_app.app_docker_success_phrase
