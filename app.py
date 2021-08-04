@@ -35,7 +35,7 @@ import config_wh
 
 app = Flask(__name__)
 
-app.version = '1.1.014'
+app.version = '1.1.015'
 app.env = '.env'
 
 # WEBHOOK CONSTANTS:
