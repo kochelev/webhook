@@ -30,7 +30,7 @@ def set_config(reporter, app, payload):
 def get_config(reporter, app):
 
     if not os.path.isfile(app.webhook_path + '/' + app.webhook_name + '/config_app.py'):
-        reporter('There is no env file in the application folder')
+        reporter('There is no config file for the application')
 
     try:
         with open(os.path.join(app.webhook_path + '/' + app.webhook_name, 'config_app.py'), "rb") as f:
